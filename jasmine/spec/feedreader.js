@@ -33,6 +33,9 @@ $(function() {
          */
 
          it('Url is defined', function() {
+            for(i = 0; i < allFeeds.length; i++) {
+                expect(allFeeds[i].url).toBeDefined();
+            }
          })
 
 
