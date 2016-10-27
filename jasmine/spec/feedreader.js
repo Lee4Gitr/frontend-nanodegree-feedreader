@@ -37,7 +37,7 @@ $(function() {
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
             }
-         })
+        });
 
 
         /* TODO: Write a test that loops through each feed
@@ -50,7 +50,7 @@ $(function() {
                 expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name.length).not.toBe(0);
             }
-         })         
+        });       
     });
 
     /* TODO: Write a new test suite named "The menu" */
@@ -58,16 +58,31 @@ $(function() {
     describe('The menu',function(){
 
         /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+        * hidden by default. You'll have to analyze the HTML and
+        * the CSS to determine how we're performing the
+        * hiding/showing of the menu element.
+        */
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+        // I checked the forums after being stuck and found this solution from jcast90 and also GauthamRajesh
+        
+        it('should be hidden by default', function() {
+            expect($(document.body).hasClass('menu-hidden')).toBe(true);
+        });
+        
+        /* TODO: Write a test that ensures the menu changes
+        * visibility when the menu icon is clicked. This test
+        * should have two expectations: does the menu display when
+        * clicked and does it hide when clicked again.
+        */
+        
+        it('should change visibility when the menu icon is clicked', function() {
+            // I feel like there has to be a better way than to repeat this code.
+            // This also seems to fail but it it a solution found from jcast90.
+            $("a.menu-icon-link").click();
+            expect(document.body.className).not.toContain('menu-hidden');
+            $("a.menu-icon-link").click();
+            expect(document.body.className).toContain('menu-hidden');
+        });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
