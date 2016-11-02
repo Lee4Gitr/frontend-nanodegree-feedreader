@@ -78,11 +78,13 @@ $(function() {
         it('should change visibility when the menu icon is clicked', function() {
             // I feel like there has to be a better way than to repeat this code.
             // This also seems to fail but it it a solution found from jcast90.
+            // I fixed this issue. I had a plugin blocking my test from passing. I used code I knew would pass here for that reason.
             $("a.menu-icon-link").click();
             expect(document.body.className).not.toContain('menu-hidden');
             $("a.menu-icon-link").click();
             expect(document.body.className).toContain('menu-hidden');
         });
+
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -104,7 +106,7 @@ $(function() {
             expect($('.feed').length).toBeGreaterThan(0);
             expect($('.entry').length).toBeGreaterThan(0);
             done();
-        })
+        });
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
@@ -116,25 +118,22 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
+        //AshleyED helped me understand this test.
+
         var $feed;
-        var $newFeed;
 
         beforeEach(function(done) {
-            loadFeed(0, function(){
+            loadFeed(1, function() {
                 $feed = $('.feed').text();
-                loadFeed(1, function() {
-                    $newFeed = $('.feed').text();
-                    done();
-                });
+                done();
             });
         });
 
-        it('content actually changes', function() {
-            expect($newFeed).not.toBe($feed);
-        })
-
-
-        
+        it('content actually changes', function(done) {
+            loadFeed(2, function() {
+                expect($('.feed').text()).not.toBe($feed);
+                done();
+            })
+        });
     });
-
-}());
+});
