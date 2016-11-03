@@ -79,12 +79,15 @@ $(function() {
             // I feel like there has to be a better way than to repeat this code.
             // This also seems to fail but it it a solution found from jcast90.
             // I fixed this issue. I had a plugin blocking my test from passing. I used code I knew would pass here for that reason.
-            $("a.menu-icon-link").click();
-            expect(document.body.className).not.toContain('menu-hidden');
-            $("a.menu-icon-link").click();
-            expect(document.body.className).toContain('menu-hidden');
+            // I wasn't happy with this solution, so I actually created an if-else statement so that I could see clearly what was happenning.
+            if (document.body.classList.contains('menu-hidden') && $("a.menu-icon-link").click()) {
+                expect(document.body.className).not.toContain('menu-hidden');
+            } else if (document.body.classList.contains('menu-hidden') && $("a.menu-icon-link").click()) {
+                expect(document.body.className).toContain('menu-hidden');
+            } else {
+                fail('The menu is not hiding correctly');
+            }
         });
-
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
