@@ -9,6 +9,15 @@ I used the Udacity forums to their full capacity with this project and have cite
 2. from the forums I followed heidi and JohnMav for asyncronous testing. 
 3. A special thanks to Karol for helping me with my "The Menu" test.
 
+## How to Run.
+
+1. Open index.html in your favorite browser.
+2. Scroll to the bottom of the page. There should be a Jasmine window with specs. 
+3. If you want to run an individual test, simply click on that test. If you want to run an entire suite, simply click the suite.
+4. The page will reload and run the test(s) you picked.
+5. If you'd like to run all specs, simply click "Ran (x) of (y) specs - run all".
+6. If you feel that the tests provided are lacking, they can be edited in jasmine/spec/feedreader.js.
+
 ## Why this Project?
 
 Testing is an important part of the development process and many organizations practice a standard of development known as "test-driven development". This is when developers write tests first, before they ever start developing their application. All the tests initially fail and then they start writing application code to make these tests pass.
