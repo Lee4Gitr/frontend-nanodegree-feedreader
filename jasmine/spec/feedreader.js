@@ -79,15 +79,12 @@ $(function() {
             // I feel like there has to be a better way than to repeat this code.
             // This also seems to fail but it it a solution found from jcast90.
             // I fixed this issue. I had a plugin blocking my test from passing. I used code I knew would pass here for that reason.
-            // I wasn't happy with this solution, so I actually created an if-else statement so that I could see clearly what was happenning.
-            if (document.body.classList.contains('menu-hidden') && $("a.menu-icon-link").click()) {
-                expect(document.body.className).not.toContain('menu-hidden');
-            } else if (document.body.classList.contains('menu-hidden') && $("a.menu-icon-link").click()) {
-                expect(document.body.className).toContain('menu-hidden');
-            } else {
-                fail('The menu is not hiding correctly');
-            }
+            $("a.menu-icon-link").click();
+            expect(document.body.className).not.toContain('menu-hidden');
+            $("a.menu-icon-link").click();
+            expect(document.body.className).toContain('menu-hidden');
         });
+
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -121,12 +118,14 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
-        //AshleyED helped me understand this test.
-
+        // AshleyED and the forum question, posed by heidi and explained by JohnMav, helped me understand this test.
+        // Link to the forum question: https://discussions.udacity.com/t/new-feed-selection-question/16274/12.
+        
         var $feed;
 
         beforeEach(function(done) {
             loadFeed(1, function() {
+                // current feed after loadFeed(1) is called is saved as the variable $feed.
                 $feed = $('.feed').text();
                 done();
             });
@@ -134,9 +133,10 @@ $(function() {
 
         it('content actually changes', function(done) {
             loadFeed(2, function() {
+                // current feed after loadFeed(2) is called compared to $feed.
                 expect($('.feed').text()).not.toBe($feed);
                 done();
-            })
+            });
         });
     });
 });
