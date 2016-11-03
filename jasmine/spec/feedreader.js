@@ -123,6 +123,7 @@ $(function() {
         
         var $feed;
 
+        // loadFeed(0) is just the initalized function, so this test tests the data that is currently up against the data that was previously up, not against the initialized function.
         beforeEach(function(done) {
             loadFeed(1, function() {
                 // current feed after loadFeed(1) is called is saved as the variable $feed.
